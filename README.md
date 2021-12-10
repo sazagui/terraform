@@ -544,6 +544,10 @@ You can find the complete code of the files via the following links:
 [output.tf](output.tf) and
 [sg.tf](sg.tf)
 
+For running the code, execute the command below: 
+``terraform init``
+``terraform apply``
+
 
 ## II- Ansible
 *Useful resources for Ansible overview:*
