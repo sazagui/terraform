@@ -76,7 +76,7 @@ output "other_outpuname" {
   value       = aws_instance.app_server.public_ip
 }
 ```
->For creating **useful configurations**, it is important to use variables instead of ***hard-coded values** to make your configuration more dynamic and flexible.
+>For creating **useful configurations**, it is important to use variables instead of **hard-coded values** to make your configuration more dynamic and flexible.
 
 ### Network configuration
 In this part, we configure the network on which we will deploy the architecture seen previously. 
@@ -132,7 +132,7 @@ resource "aws_vpc" "app_vpc" {
   }
 }
 ```
-We add the following code in ``variables.tf`` 
+We add the following code in ``variables.tf``:
 ```terraform
 variable "vpc_cidr" {}
 ```
@@ -170,7 +170,7 @@ In ``variables.tf``:
 ```terraform
 variable "public_subnet_cidr" {}
 ```
-In terraform.tfvars:
+In ``terraform.tfvars``:
 
 ```terraform
 public_subnet_cidr = "178.0.10.0/24"
@@ -257,7 +257,7 @@ For the web instance of our **doodle** application, we had to install an apache 
 ##### Security rules
 
 Next, we need to define the security rules and communication ports for the web machine. For this instance, we allow the SSH port and the 8080 port for the ```web``` server. 
-Below is the code for the sg resource in the ``sg.tf`` file.
+Below is the code for the sg resource in the ``sg.tf`` file:
 
 ```terraform
 resource "aws_security_group" "sg" {
@@ -533,12 +533,15 @@ resource "aws_security_group" "sg_docker" {
 ```
 
 
+
+
+
 For this terraform tutorial, we defined our infrastructure, from network to instance, using variables. As you will notice, a mix of variable type and hard-coded value is done for learning purposes.
 You can find the complete code of the files via the following links:
-[main.tf](main.tf)
-[variables.tf](variables.tf)
-[terraform.tfvars](terraform.tfvars)
-[output.tf](output.tf)
+[main.tf](main.tf),
+[variables.tf](variables.tf),
+[terraform.tfvars](terraform.tfvars),
+[output.tf](output.tf) and
 [sg.tf](sg.tf)
 
 
@@ -681,7 +684,7 @@ Create an ansible playbook named `vm1_playbook.yml` in which we will design how 
 As explanation:
 1. The task named `Create resource group` will create a group of resources to which the `myVM4AnsibleServer` will be part of. In **Azure**, the concept of **resource group** is a container that holds related resources (Virtual machines, storage accounts, web apps, databases, and virtual networks...); even Resource groups, subscriptions, management groups, and tags are also examples of resources. A good practice in **Azure** is to affect resource groups resources to manage them well. [useful_link](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview#resource-groups). This resource will be called **tutoDLCAnsible-rg**
 2. The tasks named `Create virtual network`, `Add subnet`, `Create public IP address` will respectively create virtual network, a subnetwork and a public IP address which will be affected to the resource **tutoDLCAnsible-rg** and will be used by a network interface.
-3. The tasks named `Create Network Security Group that allows ONLY SSH` and `Create Network Security Group to allow **Doodle** app works` will create Network rules respectively for **vm1** and then for the **frontend-vm**. You will notice that the **frontend-vm**  must have the port 80 open and reachable from internet to access easily to the front off the **doodle** app.
+3. The tasks named `Create Network Security Group that allows ONLY SSH` and `Create Network Security Group to allow Doodle app works` will create Network rules respectively for **vm1** and then for the **frontend-vm**. You will notice that the **frontend-vm**  must have the port 80 open and reachable from internet to access easily to the front off the **doodle** app.
 4. The task named `Create virtual network interface card` will setup the network interface with the previous virtual network, subnet, Public IP address, network rules and fix a static IP private.
 5. The last task `Create VM` will create finally create the desired machine.
 
@@ -733,7 +736,7 @@ The content following the pattern kept in the **step 2** section, paste it in th
 
 Following likely the same process as the one in **step 3**, create a playbook named `frontEndVm_playbook.yml` on the `myVM4AnsibleServer`, which content is :
 ```shell script
-- name: Create Azure VM which role will be the Front End of **Doodle** App
+- name: Create Azure VM which role will be the Front End of Doodle App
   hosts: localhost
   connection: local
   vars_prompt:
@@ -794,7 +797,7 @@ To test if the certificate will be taken for following connection with the front
 On the `myVM4AnsibleServer`, write a new ansible playbook to install the web server apache2 and the compiled project of **doodle** front. Run `nano install_FE_requirement.yml`, fill it with :
 ```shell script
 ---
-- name: This sets up requirements for Front End of **Doodle** App
+- name: This sets up requirements for Front End of Doodle App
   hosts: azureuser1@178.0.10.230
   become: yes
   tasks:
